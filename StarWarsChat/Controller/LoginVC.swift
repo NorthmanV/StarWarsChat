@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginVC: UIViewController {
     
@@ -27,6 +28,7 @@ class LoginVC: UIViewController {
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
         button.layer.cornerRadius = 5
+        button.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
         return button
     }()
     
@@ -99,6 +101,39 @@ class LoginVC: UIViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    @objc func handleRegister() {
+//        guard let email = emailTextField.text, !(emailTextField.text?.isEmpty)!, let password = passwordTextField.text, !(passwordTextField.text?.isEmpty)!, let name = nameTextField.text, !(nameTextField.text?.isEmpty)! else {return}
+        guard let email = emailTextField.text, let password = passwordTextField.text, let name = nameTextField.text, !(nameTextField.text?.isEmpty)! else {
+            showAlertwith(message: "All fields must be filled ")
+            return
+        }
+        
+        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+            if error != nil {
+                self.showAlertwith(message: error!.localizedDescription)
+                return
+            } else {
+                let ref = Database.database().reference()
+                let usersRef = ref.child("users").childByAutoId()
+                let values = ["name": name, "email": email]
+                usersRef.updateChildValues(values) { (error, ref) in
+                    if error != nil {
+                        print(error!.localizedDescription)
+                        return
+                    }
+                    print("User successfully saved in DB")
+                }
+            }
+        }
+
+    }
+    
+    func showAlertwith(message: String) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
     
     func setupProfileImageView() {

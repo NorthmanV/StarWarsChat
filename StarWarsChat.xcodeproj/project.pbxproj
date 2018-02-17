@@ -7,15 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		397E17F9583455F95F470FE0 /* Pods_StarWarsChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CD331D80FB279A3D3F6FBB /* Pods_StarWarsChat.framework */; };
 		8781218B203357E800868B51 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781218A203357E800868B51 /* AppDelegate.swift */; };
 		8781218D203357E800868B51 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781218C203357E800868B51 /* ViewController.swift */; };
 		87812190203357E800868B51 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8781218E203357E800868B51 /* Main.storyboard */; };
 		87812192203357E800868B51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87812191203357E800868B51 /* Assets.xcassets */; };
 		87812195203357E800868B51 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87812193203357E800868B51 /* LaunchScreen.storyboard */; };
 		8781219E20335C5E00868B51 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781219D20335C5E00868B51 /* LoginVC.swift */; };
+		87CA6C54203839D20055A1CF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 87CA6C53203839D20055A1CF /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04CD331D80FB279A3D3F6FBB /* Pods_StarWarsChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StarWarsChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87812187203357E800868B51 /* StarWarsChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StarWarsChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8781218A203357E800868B51 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8781218C203357E800868B51 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +27,9 @@
 		87812194203357E800868B51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		87812196203357E800868B51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8781219D20335C5E00868B51 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		87CA6C53203839D20055A1CF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A3D6F1B540C26F6DB6796ACC /* Pods-StarWarsChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StarWarsChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StarWarsChat/Pods-StarWarsChat.debug.xcconfig"; sourceTree = "<group>"; };
+		E7B4D655E35C4F0980A1EC13 /* Pods-StarWarsChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StarWarsChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-StarWarsChat/Pods-StarWarsChat.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +37,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				397E17F9583455F95F470FE0 /* Pods_StarWarsChat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7BEE255E242281578564F6B0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				04CD331D80FB279A3D3F6FBB /* Pods_StarWarsChat.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8781217E203357E800868B51 = {
 			isa = PBXGroup;
 			children = (
 				87812189203357E800868B51 /* StarWarsChat */,
 				87812188203357E800868B51 /* Products */,
+				BAD8F56AD2244FBB1394FA92 /* Pods */,
+				7BEE255E242281578564F6B0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,6 +79,7 @@
 				87812191203357E800868B51 /* Assets.xcassets */,
 				87812193203357E800868B51 /* LaunchScreen.storyboard */,
 				87812196203357E800868B51 /* Info.plist */,
+				87CA6C53203839D20055A1CF /* GoogleService-Info.plist */,
 			);
 			path = StarWarsChat;
 			sourceTree = "<group>";
@@ -75,6 +93,15 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		BAD8F56AD2244FBB1394FA92 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A3D6F1B540C26F6DB6796ACC /* Pods-StarWarsChat.debug.xcconfig */,
+				E7B4D655E35C4F0980A1EC13 /* Pods-StarWarsChat.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -82,9 +109,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 87812199203357E800868B51 /* Build configuration list for PBXNativeTarget "StarWarsChat" */;
 			buildPhases = (
+				BB9B4B3B95D83F479317728E /* [CP] Check Pods Manifest.lock */,
 				87812183203357E800868B51 /* Sources */,
 				87812184203357E800868B51 /* Frameworks */,
 				87812185203357E800868B51 /* Resources */,
+				866D1D700D5B05B2794F2A57 /* [CP] Embed Pods Frameworks */,
+				DDB79D394D3738386334F023 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -135,12 +165,73 @@
 			buildActionMask = 2147483647;
 			files = (
 				87812195203357E800868B51 /* LaunchScreen.storyboard in Resources */,
+				87CA6C54203839D20055A1CF /* GoogleService-Info.plist in Resources */,
 				87812192203357E800868B51 /* Assets.xcassets in Resources */,
 				87812190203357E800868B51 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		866D1D700D5B05B2794F2A57 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-StarWarsChat/Pods-StarWarsChat-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StarWarsChat/Pods-StarWarsChat-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BB9B4B3B95D83F479317728E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-StarWarsChat-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DDB79D394D3738386334F023 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StarWarsChat/Pods-StarWarsChat-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		87812183203357E800868B51 /* Sources */ = {
@@ -284,6 +375,7 @@
 		};
 		8781219A203357E800868B51 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A3D6F1B540C26F6DB6796ACC /* Pods-StarWarsChat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -299,6 +391,7 @@
 		};
 		8781219B203357E800868B51 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E7B4D655E35C4F0980A1EC13 /* Pods-StarWarsChat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
