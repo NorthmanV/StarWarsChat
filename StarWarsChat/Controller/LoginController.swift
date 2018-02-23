@@ -1,5 +1,5 @@
 //
-//  LoginVC.swift
+//  LoginController.swift
 //  StarWarsChat
 //
 //  Created by Руслан Акберов on 13.02.2018.
@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class LoginVC: UIViewController {
+class LoginController: UIViewController {
     
     let inputsContainerView: UIView = {
         let view = UIView()
@@ -52,6 +52,7 @@ class LoginVC: UIViewController {
         tf.placeholder = "Email"
         tf.keyboardType = .emailAddress
         tf.keyboardAppearance = .dark
+        tf.spellCheckingType = .no
         tf.translatesAutoresizingMaskIntoConstraints = false
         return tf
     }()

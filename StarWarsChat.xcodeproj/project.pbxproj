@@ -8,25 +8,31 @@
 
 /* Begin PBXBuildFile section */
 		397E17F9583455F95F470FE0 /* Pods_StarWarsChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CD331D80FB279A3D3F6FBB /* Pods_StarWarsChat.framework */; };
+		876E6EC32040325200FD2D68 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E6EC22040325200FD2D68 /* User.swift */; };
+		876E6EC620403CF000FD2D68 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E6EC520403CF000FD2D68 /* UserCell.swift */; };
 		8781218B203357E800868B51 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781218A203357E800868B51 /* AppDelegate.swift */; };
-		8781218D203357E800868B51 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781218C203357E800868B51 /* ViewController.swift */; };
+		8781218D203357E800868B51 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781218C203357E800868B51 /* MessagesController.swift */; };
 		87812190203357E800868B51 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8781218E203357E800868B51 /* Main.storyboard */; };
 		87812192203357E800868B51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87812191203357E800868B51 /* Assets.xcassets */; };
 		87812195203357E800868B51 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87812193203357E800868B51 /* LaunchScreen.storyboard */; };
-		8781219E20335C5E00868B51 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781219D20335C5E00868B51 /* LoginVC.swift */; };
+		8781219E20335C5E00868B51 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781219D20335C5E00868B51 /* LoginController.swift */; };
+		878C15A520402BA200B75A89 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878C15A420402BA200B75A89 /* NewMessageController.swift */; };
 		87CA6C54203839D20055A1CF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 87CA6C53203839D20055A1CF /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		04CD331D80FB279A3D3F6FBB /* Pods_StarWarsChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StarWarsChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		876E6EC22040325200FD2D68 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		876E6EC520403CF000FD2D68 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		87812187203357E800868B51 /* StarWarsChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StarWarsChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8781218A203357E800868B51 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8781218C203357E800868B51 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8781218C203357E800868B51 /* MessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
 		8781218F203357E800868B51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		87812191203357E800868B51 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		87812194203357E800868B51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		87812196203357E800868B51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8781219D20335C5E00868B51 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		8781219D20335C5E00868B51 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		878C15A420402BA200B75A89 /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
 		87CA6C53203839D20055A1CF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A3D6F1B540C26F6DB6796ACC /* Pods-StarWarsChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StarWarsChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StarWarsChat/Pods-StarWarsChat.debug.xcconfig"; sourceTree = "<group>"; };
 		E7B4D655E35C4F0980A1EC13 /* Pods-StarWarsChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StarWarsChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-StarWarsChat/Pods-StarWarsChat.release.xcconfig"; sourceTree = "<group>"; };
@@ -52,6 +58,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		876E6EC12040323100FD2D68 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				876E6EC22040325200FD2D68 /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		876E6EC420403CD700FD2D68 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				876E6EC520403CF000FD2D68 /* UserCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		8781217E203357E800868B51 = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +95,8 @@
 		87812189203357E800868B51 /* StarWarsChat */ = {
 			isa = PBXGroup;
 			children = (
+				876E6EC12040323100FD2D68 /* Model */,
+				876E6EC420403CD700FD2D68 /* View */,
 				8781219C20335C2C00868B51 /* Controller */,
 				8781218A203357E800868B51 /* AppDelegate.swift */,
 				8781218E203357E800868B51 /* Main.storyboard */,
@@ -87,8 +111,9 @@
 		8781219C20335C2C00868B51 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				8781218C203357E800868B51 /* ViewController.swift */,
-				8781219D20335C5E00868B51 /* LoginVC.swift */,
+				8781218C203357E800868B51 /* MessagesController.swift */,
+				8781219D20335C5E00868B51 /* LoginController.swift */,
+				878C15A420402BA200B75A89 /* NewMessageController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -238,9 +263,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8781218D203357E800868B51 /* ViewController.swift in Sources */,
+				878C15A520402BA200B75A89 /* NewMessageController.swift in Sources */,
+				8781218D203357E800868B51 /* MessagesController.swift in Sources */,
+				876E6EC620403CF000FD2D68 /* UserCell.swift in Sources */,
 				8781218B203357E800868B51 /* AppDelegate.swift in Sources */,
-				8781219E20335C5E00868B51 /* LoginVC.swift in Sources */,
+				876E6EC32040325200FD2D68 /* User.swift in Sources */,
+				8781219E20335C5E00868B51 /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
