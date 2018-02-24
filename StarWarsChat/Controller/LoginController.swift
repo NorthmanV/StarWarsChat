@@ -73,11 +73,13 @@ class LoginController: UIViewController {
         return tf
     }()
     
-    let profileImageView: UIImageView = {
+    lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "trooper")
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImageView)))
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
     
@@ -154,20 +156,40 @@ class LoginController: UIViewController {
                 self.showAlertwith(message: error!.localizedDescription)
                 return
             } else {
-                let ref = Database.database().reference()
-                let uid = Auth.auth().currentUser?.uid
-                let usersRef = ref.child("users").child(uid!)
-                let values = ["name": name, "email": email]
-                usersRef.updateChildValues(values) { (error, ref) in
-                    if error != nil {
-                        print(error!.localizedDescription)
-                        return
-                    }
+                guard let uid = user?.uid else {return}
+                let imageName = NSUUID().uuidString
+                let storageRef = Storage.storage().reference().child(imageName)
+                let metadata = StorageMetadata()
+                metadata.contentType = "image/jpeg"
+                if let uploadData = UIImageJPEGRepresentation(self.profileImageView.image!, 1) {
+                    storageRef.putData(uploadData, metadata: metadata, completion: { (metadata, error) in
+                        if error != nil {
+                            print(error!.localizedDescription)
+                            return
+                        }
+                        if let profileImageUrl = metadata?.downloadURL()?.absoluteString {
+                            let values = ["name": name, "email": email, "profileImageUrl": profileImageUrl]
+                            self.registerUserIntoDatabase(uid: uid, values: values)
+                        }
+                        
+                    })
+
                 }
             }
             self.dismiss(animated: true, completion: nil)
         }
 
+    }
+    
+    private func registerUserIntoDatabase(uid: String, values: [String: String]) {
+        let databaseRef = Database.database().reference()
+        let usersRef = databaseRef.child("users").child(uid)
+        usersRef.updateChildValues(values) { (error, ref) in
+            if error != nil {
+                print(error!.localizedDescription)
+                return
+            }
+        }
     }
     
     @objc func handleLoginRegisterChange() {
