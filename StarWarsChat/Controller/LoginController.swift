@@ -11,6 +11,8 @@ import Firebase
 
 class LoginController: UIViewController {
     
+    var messagesController: MessagesController?
+    
     let inputsContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.white
@@ -141,6 +143,7 @@ class LoginController: UIViewController {
                 self.showAlertwith(message: error!.localizedDescription)
                 return
             }
+            self.messagesController?.fetchUserAndSetupNavBarTitle()
             self.dismiss(animated: true, completion: nil)
         }
     }
@@ -161,7 +164,7 @@ class LoginController: UIViewController {
                 let storageRef = Storage.storage().reference().child(imageName)
                 let metadata = StorageMetadata()
                 metadata.contentType = "image/jpeg"
-                if let uploadData = UIImageJPEGRepresentation(self.profileImageView.image!, 1) {
+                if let profileIMage = self.profileImageView.image, let uploadData = UIImageJPEGRepresentation(profileIMage, 0.4) {
                     storageRef.putData(uploadData, metadata: metadata, completion: { (metadata, error) in
                         if error != nil {
                             print(error!.localizedDescription)
@@ -189,6 +192,9 @@ class LoginController: UIViewController {
                 print(error!.localizedDescription)
                 return
             }
+            let user = User()
+            user.setValuesForKeys(values)
+            self.messagesController?.setupNavBarWithUser(user)
         }
     }
     
