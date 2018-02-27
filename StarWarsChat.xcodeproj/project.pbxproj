@@ -10,6 +10,7 @@
 		397E17F9583455F95F470FE0 /* Pods_StarWarsChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CD331D80FB279A3D3F6FBB /* Pods_StarWarsChat.framework */; };
 		873E134C20405D000011FE76 /* LoginControllers+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873E134B20405D000011FE76 /* LoginControllers+handlers.swift */; };
 		873E134F2041A8AE0011FE76 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873E134E2041A8AE0011FE76 /* Extensions.swift */; };
+		873E13512042EF000011FE76 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873E13502042EF000011FE76 /* ChatLogController.swift */; };
 		876E6EC32040325200FD2D68 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E6EC22040325200FD2D68 /* User.swift */; };
 		876E6EC620403CF000FD2D68 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E6EC520403CF000FD2D68 /* UserCell.swift */; };
 		8781218B203357E800868B51 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781218A203357E800868B51 /* AppDelegate.swift */; };
@@ -26,6 +27,7 @@
 		04CD331D80FB279A3D3F6FBB /* Pods_StarWarsChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StarWarsChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		873E134B20405D000011FE76 /* LoginControllers+handlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginControllers+handlers.swift"; sourceTree = "<group>"; };
 		873E134E2041A8AE0011FE76 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		873E13502042EF000011FE76 /* ChatLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
 		876E6EC22040325200FD2D68 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		876E6EC520403CF000FD2D68 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		87812187203357E800868B51 /* StarWarsChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StarWarsChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,6 +130,7 @@
 				8781219D20335C5E00868B51 /* LoginController.swift */,
 				878C15A420402BA200B75A89 /* NewMessageController.swift */,
 				873E134B20405D000011FE76 /* LoginControllers+handlers.swift */,
+				873E13502042EF000011FE76 /* ChatLogController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				873E13512042EF000011FE76 /* ChatLogController.swift in Sources */,
 				873E134C20405D000011FE76 /* LoginControllers+handlers.swift in Sources */,
 				878C15A520402BA200B75A89 /* NewMessageController.swift in Sources */,
 				8781218D203357E800868B51 /* MessagesController.swift in Sources */,

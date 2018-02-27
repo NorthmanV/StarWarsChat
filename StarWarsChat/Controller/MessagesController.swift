@@ -38,8 +38,9 @@ class MessagesController: UITableViewController {
     }
     
     func setupNavBarWithUser(_ user: User) {
-        let titleView = UIView()
+        let titleView = UIButton()
         titleView.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
+        titleView.addTarget(self, action: #selector(showChatController), for: .touchUpInside)
         
         let profileImageView = UIImageView()
         titleView.addSubview(profileImageView)
@@ -65,6 +66,12 @@ class MessagesController: UITableViewController {
         nameLabel.heightAnchor.constraint(equalTo: profileImageView.heightAnchor).isActive = true
         
         self.navigationItem.titleView = titleView
+        
+    }
+    
+    @objc func showChatController() {
+        let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
+        navigationController?.pushViewController(chatLogController, animated: true)
     }
     
     @objc func handleNewMessage() {
