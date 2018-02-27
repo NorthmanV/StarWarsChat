@@ -13,6 +13,7 @@ class NewMessageController: UITableViewController {
     
     let cellId = "CellID"
     var users = [User]()
+    var messagesController: MessagesController?
     
     override func viewDidLoad() {
          super.viewDidLoad()
@@ -29,11 +30,11 @@ class NewMessageController: UITableViewController {
         Database.database().reference().child("users").observe(.childAdded) { (snapshot) in
             if let dictionary = snapshot.value as? [String: Any] {
                 let user = User()
+                user.id = snapshot.key
                 user.setValuesForKeys(dictionary)
                 self.users.append(user)
                 self.tableView.reloadData()
             }
-
         }
     }
     
@@ -56,6 +57,13 @@ class NewMessageController: UITableViewController {
         }
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        dismiss(animated: true) {
+            let user = self.users[indexPath.row]
+            self.messagesController?.showChatControllerForUser(user: user)
+        }
     }
 }
 

@@ -10,12 +10,15 @@ import UIKit
 import Firebase
 
 class MessagesController: UITableViewController {
+    
+    var messages = [Message]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(handleNewMessage))
         checkIfUserLoggedIn()
+        observeMessages()
     }
     
     func checkIfUserLoggedIn() {
@@ -40,7 +43,6 @@ class MessagesController: UITableViewController {
     func setupNavBarWithUser(_ user: User) {
         let titleView = UIButton()
         titleView.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
-        titleView.addTarget(self, action: #selector(showChatController), for: .touchUpInside)
         
         let profileImageView = UIImageView()
         titleView.addSubview(profileImageView)
@@ -69,13 +71,16 @@ class MessagesController: UITableViewController {
         
     }
     
-    @objc func showChatController() {
+    @objc func showChatControllerForUser(user: User) {
         let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
+        chatLogController.user = user
         navigationController?.pushViewController(chatLogController, animated: true)
     }
     
     @objc func handleNewMessage() {
-        let navController = UINavigationController(rootViewController: NewMessageController())
+        let newMessageController = NewMessageController()
+        newMessageController.messagesController = self
+        let navController = UINavigationController(rootViewController: newMessageController)
         present(navController, animated: true, completion: nil)
     }
     
@@ -90,6 +95,30 @@ class MessagesController: UITableViewController {
         present(loginController, animated: false, completion: nil)
     }
 
+    func observeMessages() {
+        let ref = Database.database().reference().child("messages")
+        ref.observe(.childAdded) { (snapshot) in
+            if let dictionary = snapshot.value as? [String: Any] {
+                let message = Message()
+                message.setValuesForKeys(dictionary)
+                self.messages.append(message)
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return messages.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cellId")
+        let message = messages[indexPath.row]
+        cell.textLabel?.text = message.text
+        return cell
+    }
+    
+    
 
 }
 
