@@ -12,12 +12,15 @@ import Firebase
 class MessagesController: UITableViewController {
     
     var messages = [Message]()
+    var messagesDictionary = [String: Message]()
+    let cellId = "CellId"
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(handleNewMessage))
         checkIfUserLoggedIn()
+        tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
         observeMessages()
     }
     
@@ -101,7 +104,12 @@ class MessagesController: UITableViewController {
             if let dictionary = snapshot.value as? [String: Any] {
                 let message = Message()
                 message.setValuesForKeys(dictionary)
-                self.messages.append(message)
+                //self.messages.append(message)
+                if let toId = message.toId {
+                    self.messagesDictionary[toId] = message
+                    self.messages = Array(self.messagesDictionary.values)
+                    self.messages.sorted(by: {$0.timeStamp!.intValue > $1.timeStamp!.intValue})
+                }
                 self.tableView.reloadData()
             }
         }
@@ -112,10 +120,13 @@ class MessagesController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cellId")
-        let message = messages[indexPath.row]
-        cell.textLabel?.text = message.text
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! UserCell
+        cell.message = messages[indexPath.row]
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 72
     }
     
     
