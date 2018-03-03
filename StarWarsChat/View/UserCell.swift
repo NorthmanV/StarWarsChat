@@ -13,17 +13,7 @@ class UserCell: UITableViewCell {
     
     var message: Message? {
         didSet {
-            if let toId = message?.toId {
-                let ref = Database.database().reference().child("users").child(toId)
-                ref.observe(.value, with: { (snapshot) in
-                    if let dictionary = snapshot.value as? [String: Any] {
-                        self.textLabel?.text = dictionary["name"] as? String
-                        if let profileImageUrl = dictionary["profileImageUrl"] as? String {
-                            self.profileImageView.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
-                        }
-                    }
-                })
-            }
+            setupMessageAndProfileImage()
             detailTextLabel?.text = message?.text
             if let seconds = message?.timeStamp?.doubleValue {
                 let timeStampDate = Date(timeIntervalSince1970: seconds)
@@ -31,6 +21,27 @@ class UserCell: UITableViewCell {
                 dateformatter.dateFormat = "HH:mm"
                 timeLabel.text = dateformatter.string(from: timeStampDate)
             }
+        }
+    }
+    
+    private func setupMessageAndProfileImage() {
+        let chatPartnerId: String?
+        if message?.fromId == Auth.auth().currentUser?.uid {
+            chatPartnerId = message?.toId
+        } else {
+            chatPartnerId = message?.fromId
+        }
+        
+        if let id = chatPartnerId {
+            let ref = Database.database().reference().child("users").child(id)
+            ref.observe(.value, with: { (snapshot) in
+                if let dictionary = snapshot.value as? [String: Any] {
+                    self.textLabel?.text = dictionary["name"] as? String
+                    if let profileImageUrl = dictionary["profileImageUrl"] as? String {
+                        self.profileImageView.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
+                    }
+                }
+            })
         }
     }
     

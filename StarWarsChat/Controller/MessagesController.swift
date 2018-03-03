@@ -21,7 +21,7 @@ class MessagesController: UITableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(handleNewMessage))
         checkIfUserLoggedIn()
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
-        observeMessages()
+//        observeMessages()
     }
     
     func checkIfUserLoggedIn() {
@@ -44,6 +44,7 @@ class MessagesController: UITableViewController {
     }
     
     func setupNavBarWithUser(_ user: User) {
+        observeUserMessages()
         let titleView = UIButton()
         titleView.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
         
@@ -93,6 +94,9 @@ class MessagesController: UITableViewController {
         } catch let error {
             print(error.localizedDescription)
         }
+        messages.removeAll()
+        messagesDictionary.removeAll()
+        tableView.reloadData()
         let loginController = LoginController()
         loginController.messagesController = self
         present(loginController, animated: false, completion: nil)
@@ -108,11 +112,34 @@ class MessagesController: UITableViewController {
                 if let toId = message.toId {
                     self.messagesDictionary[toId] = message
                     self.messages = Array(self.messagesDictionary.values)
-                    self.messages.sorted(by: {$0.timeStamp!.intValue > $1.timeStamp!.intValue})
                 }
+                self.messages = self.messages.sorted(by: {$0.timeStamp!.intValue > $1.timeStamp!.intValue})
                 self.tableView.reloadData()
             }
         }
+    }
+    
+    func observeUserMessages() {
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        let ref = Database.database().reference().child("user-messages").child(uid)
+        ref.observe(.childAdded) { (snapshot) in
+            let messageId = snapshot.key
+            let messageReference = Database.database().reference().child("messages").child(messageId)
+            messageReference.observeSingleEvent(of: .value, with: { (snapshot) in
+                if let dictionary = snapshot.value as? [String: Any] {
+                    let message = Message()
+                    message.setValuesForKeys(dictionary)
+                    if let toId = message.toId {
+                        self.messagesDictionary[toId] = message
+                        self.messages = Array(self.messagesDictionary.values)
+                    }
+                    self.messages = self.messages.sorted(by: {$0.timeStamp!.intValue > $1.timeStamp!.intValue})
+                    self.tableView.reloadData()
+                }
+            })
+        }
+        
+        
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
