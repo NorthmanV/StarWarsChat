@@ -9,13 +9,17 @@
 import UIKit
 import Firebase
 
-class ChatLogController: UICollectionViewController, UITextFieldDelegate {
+class ChatLogController: UICollectionViewController, UITextFieldDelegate, UICollectionViewDelegateFlowLayout {
     
     var user: User? {
         didSet {
             navigationItem.title = user?.name
+            observeMessages()
         }
     }
+    
+    let cellId = "cellId"
+    var messages = [Message]()
     
     lazy var inputTextField: UITextField = {
         let textField = UITextField()
@@ -28,12 +32,15 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView?.backgroundColor = UIColor.white
+        collectionView?.alwaysBounceVertical = true
+        collectionView?.register(ChatMessageCell.self, forCellWithReuseIdentifier: cellId)
         setupInputComponents()
     }
     
     func setupInputComponents() {
         let containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.backgroundColor = UIColor.white
         view.addSubview(containerView)
         containerView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
@@ -64,7 +71,6 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate {
         separatorLineView.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
         separatorLineView.widthAnchor.constraint(equalTo: containerView.widthAnchor).isActive = true
         separatorLineView.heightAnchor.constraint(equalToConstant: 1).isActive = true
-        
     }
     
     @objc func handleSend() {
@@ -87,10 +93,45 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate {
         }
     }
     
+    func observeMessages() {
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        let userMessagesRef = Database.database().reference().child("user-messages").child(uid)
+        userMessagesRef.observe(.childAdded) { (snapshot) in
+            let messageId = snapshot.key
+            let messagesRef = Database.database().reference().child("messages").child(messageId)
+            messagesRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                guard let dictionary = snapshot.value as? [String: Any] else {return}
+                let message = Message()
+                message.setValuesForKeys(dictionary)
+                if message.chatPartnerId() == self.user?.id {
+                    self.messages.append(message)
+                }
+                self.collectionView?.reloadData()
+            })
+        }
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         handleSend()
         return true
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return messages.count
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ChatMessageCell
+        let message = messages[indexPath.item]
+        cell.textView.text = message.text
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width, height: 80)
+    }
+    
+
     
 }
 

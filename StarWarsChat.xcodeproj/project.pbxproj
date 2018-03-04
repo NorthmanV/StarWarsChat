@@ -12,6 +12,7 @@
 		873E134F2041A8AE0011FE76 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873E134E2041A8AE0011FE76 /* Extensions.swift */; };
 		873E13512042EF000011FE76 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873E13502042EF000011FE76 /* ChatLogController.swift */; };
 		873E13532045DE7B0011FE76 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873E13522045DE7B0011FE76 /* Message.swift */; };
+		873E1355204C14320011FE76 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873E1354204C14320011FE76 /* ChatMessageCell.swift */; };
 		876E6EC32040325200FD2D68 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E6EC22040325200FD2D68 /* User.swift */; };
 		876E6EC620403CF000FD2D68 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E6EC520403CF000FD2D68 /* UserCell.swift */; };
 		8781218B203357E800868B51 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781218A203357E800868B51 /* AppDelegate.swift */; };
@@ -30,6 +31,7 @@
 		873E134E2041A8AE0011FE76 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		873E13502042EF000011FE76 /* ChatLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
 		873E13522045DE7B0011FE76 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		873E1354204C14320011FE76 /* ChatMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		876E6EC22040325200FD2D68 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		876E6EC520403CF000FD2D68 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		87812187203357E800868B51 /* StarWarsChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StarWarsChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				876E6EC520403CF000FD2D68 /* UserCell.swift */,
+				873E1354204C14320011FE76 /* ChatMessageCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				873E134F2041A8AE0011FE76 /* Extensions.swift in Sources */,
 				876E6EC620403CF000FD2D68 /* UserCell.swift in Sources */,
 				8781218B203357E800868B51 /* AppDelegate.swift in Sources */,
+				873E1355204C14320011FE76 /* ChatMessageCell.swift in Sources */,
 				873E13532045DE7B0011FE76 /* Message.swift in Sources */,
 				876E6EC32040325200FD2D68 /* User.swift in Sources */,
 				8781219E20335C5E00868B51 /* LoginController.swift in Sources */,

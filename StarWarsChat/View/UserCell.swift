@@ -18,21 +18,14 @@ class UserCell: UITableViewCell {
             if let seconds = message?.timeStamp?.doubleValue {
                 let timeStampDate = Date(timeIntervalSince1970: seconds)
                 let dateformatter = DateFormatter()
-                dateformatter.dateFormat = "HH:mm"
+                dateformatter.dateFormat = "E HH:mm"
                 timeLabel.text = dateformatter.string(from: timeStampDate)
             }
         }
     }
     
     private func setupMessageAndProfileImage() {
-        let chatPartnerId: String?
-        if message?.fromId == Auth.auth().currentUser?.uid {
-            chatPartnerId = message?.toId
-        } else {
-            chatPartnerId = message?.fromId
-        }
-        
-        if let id = chatPartnerId {
+        if let id = message?.chatPartnerId() {
             let ref = Database.database().reference().child("users").child(id)
             ref.observe(.value, with: { (snapshot) in
                 if let dictionary = snapshot.value as? [String: Any] {
@@ -79,7 +72,7 @@ class UserCell: UITableViewCell {
         
         timeLabel.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
         timeLabel.centerYAnchor.constraint(equalTo: self.topAnchor, constant: 26).isActive = true
-        timeLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        timeLabel.widthAnchor.constraint(equalToConstant: 70).isActive = true
         timeLabel.heightAnchor.constraint(equalTo: (textLabel?.heightAnchor)!).isActive = true
     }
     
