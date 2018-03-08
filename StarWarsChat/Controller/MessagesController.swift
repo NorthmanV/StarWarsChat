@@ -100,44 +100,32 @@ class MessagesController: UITableViewController {
         loginController.messagesController = self
         present(loginController, animated: false, completion: nil)
     }
-
-    func observeMessages() {
-        let ref = Database.database().reference().child("messages")
-        ref.observe(.childAdded) { (snapshot) in
-            if let dictionary = snapshot.value as? [String: Any] {
-                let message = Message()
-                message.setValuesForKeys(dictionary)
-                if let toId = message.toId {
-                    self.messagesDictionary[toId] = message
-                    self.messages = Array(self.messagesDictionary.values)
-                }
-                self.messages = self.messages.sorted(by: {$0.timeStamp!.intValue > $1.timeStamp!.intValue})
-                self.tableView.reloadData()
-            }
-        }
-    }
     
     func observeUserMessages() {
         guard let uid = Auth.auth().currentUser?.uid else {return}
         let ref = Database.database().reference().child("user-messages").child(uid)
+        var childrenCount = 0
+        var tempArray = [Message]()
         ref.observe(.childAdded) { (snapshot) in
             let messageId = snapshot.key
+            childrenCount += 1
             let messageReference = Database.database().reference().child("messages").child(messageId)
             messageReference.observeSingleEvent(of: .value, with: { (snapshot) in
                 if let dictionary = snapshot.value as? [String: Any] {
                     let message = Message()
+                    tempArray.append(message)
                     message.setValuesForKeys(dictionary)
                     if let chatPartnerId = message.chatPartnerId() {
                         self.messagesDictionary[chatPartnerId] = message
                         self.messages = Array(self.messagesDictionary.values)
                     }
                     self.messages = self.messages.sorted(by: {$0.timeStamp!.intValue > $1.timeStamp!.intValue})
-                    self.tableView.reloadData()
+                    if childrenCount == tempArray.count {
+                        self.tableView.reloadData()
+                    }
                 }
             })
         }
-        
-        
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -115,10 +115,10 @@
 		87812189203357E800868B51 /* StarWarsChat */ = {
 			isa = PBXGroup;
 			children = (
-				873E134D2041A8970011FE76 /* Helpers */,
 				876E6EC12040323100FD2D68 /* Model */,
 				876E6EC420403CD700FD2D68 /* View */,
 				8781219C20335C2C00868B51 /* Controller */,
+				873E134D2041A8970011FE76 /* Helpers */,
 				8781218A203357E800868B51 /* AppDelegate.swift */,
 				8781218E203357E800868B51 /* Main.storyboard */,
 				87812191203357E800868B51 /* Assets.xcassets */,
