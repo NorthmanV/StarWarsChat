@@ -161,7 +161,7 @@ class LoginController: UIViewController {
             } else {
                 guard let uid = user?.uid else {return}
                 let imageName = NSUUID().uuidString
-                let storageRef = Storage.storage().reference().child(imageName)
+                let storageRef = Storage.storage().reference().child("profile-images").child(imageName)
                 let metadata = StorageMetadata()
                 metadata.contentType = "image/jpeg"
                 if let profileIMage = self.profileImageView.image, let uploadData = UIImageJPEGRepresentation(profileIMage, 0.4) {
@@ -181,7 +181,6 @@ class LoginController: UIViewController {
             }
             self.dismiss(animated: true, completion: nil)
         }
-
     }
     
     private func registerUserIntoDatabase(uid: String, values: [String: String]) {
