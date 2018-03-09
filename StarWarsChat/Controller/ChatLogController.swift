@@ -133,18 +133,18 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
                 return
             }
             self.inputTextField.text = nil
-            let userMessagesRef = Database.database().reference().child("user-messages").child(fromId)
+            let userMessagesRef = Database.database().reference().child("user-messages").child(fromId).child(toId)
             let messageId = ref.key
             userMessagesRef.updateChildValues([messageId: 1])
             
-            let recipientUserMessages = Database.database().reference().child("user-messages").child(toId)
+            let recipientUserMessages = Database.database().reference().child("user-messages").child(toId).child(fromId)
             recipientUserMessages.updateChildValues([messageId: 1])
         }
     }
     
     func observeMessages() {
-        guard let uid = Auth.auth().currentUser?.uid else {return}
-        let userMessagesRef = Database.database().reference().child("user-messages").child(uid)
+        guard let uid = Auth.auth().currentUser?.uid, let toId = user?.id else {return}
+        let userMessagesRef = Database.database().reference().child("user-messages").child(uid).child(toId)
         userMessagesRef.observe(.childAdded) { (snapshot) in
             let messageId = snapshot.key
             let messagesRef = Database.database().reference().child("messages").child(messageId)

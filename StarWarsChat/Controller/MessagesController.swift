@@ -107,23 +107,26 @@ class MessagesController: UITableViewController {
         var childrenCount = 0
         var tempArray = [Message]()
         ref.observe(.childAdded) { (snapshot) in
-            let messageId = snapshot.key
-            childrenCount += 1
-            let messageReference = Database.database().reference().child("messages").child(messageId)
-            messageReference.observeSingleEvent(of: .value, with: { (snapshot) in
-                if let dictionary = snapshot.value as? [String: Any] {
-                    let message = Message()
-                    tempArray.append(message)
-                    message.setValuesForKeys(dictionary)
-                    if let chatPartnerId = message.chatPartnerId() {
-                        self.messagesDictionary[chatPartnerId] = message
-                        self.messages = Array(self.messagesDictionary.values)
+            let userId = snapshot.key
+            ref.child(userId).observe(.childAdded, with: { (snapshot) in
+                let messageId = snapshot.key
+                childrenCount += 1
+                let messageReference = Database.database().reference().child("messages").child(messageId)
+                messageReference.observeSingleEvent(of: .value, with: { (snapshot) in
+                    if let dictionary = snapshot.value as? [String: Any] {
+                        let message = Message()
+                        tempArray.append(message)
+                        message.setValuesForKeys(dictionary)
+                        if let chatPartnerId = message.chatPartnerId() {
+                            self.messagesDictionary[chatPartnerId] = message
+                        }
+                        if childrenCount == tempArray.count {
+                            self.messages = Array(self.messagesDictionary.values)
+                            self.messages = self.messages.sorted(by: {$0.timeStamp!.intValue > $1.timeStamp!.intValue})
+                            self.tableView.reloadData()
+                        }
                     }
-                    self.messages = self.messages.sorted(by: {$0.timeStamp!.intValue > $1.timeStamp!.intValue})
-                    if childrenCount == tempArray.count {
-                        self.tableView.reloadData()
-                    }
-                }
+                })
             })
         }
     }
