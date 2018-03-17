@@ -323,6 +323,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ChatMessageCell
         cell.chatLogController = self
         let message = messages[indexPath.item]
+        cell.message = message
         cell.textView.text = message.text
         setupCell(cell: cell, message: message)
         if let text = message.text {
@@ -332,6 +333,8 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
             cell.bubbleWidthAnchor?.constant = 250
             cell.textView.isHidden = true
         }
+        
+        cell.playButton.isHidden = message.videoUrl == nil
         return cell
     }
     
