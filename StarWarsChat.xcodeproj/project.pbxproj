@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		397E17F9583455F95F470FE0 /* Pods_StarWarsChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CD331D80FB279A3D3F6FBB /* Pods_StarWarsChat.framework */; };
+		871527E9205E74B8001E6346 /* ChatInputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871527E8205E74B8001E6346 /* ChatInputContainerView.swift */; };
 		873E134C20405D000011FE76 /* LoginControllers+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873E134B20405D000011FE76 /* LoginControllers+handlers.swift */; };
 		873E134F2041A8AE0011FE76 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873E134E2041A8AE0011FE76 /* Extensions.swift */; };
 		873E13512042EF000011FE76 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873E13502042EF000011FE76 /* ChatLogController.swift */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		04CD331D80FB279A3D3F6FBB /* Pods_StarWarsChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StarWarsChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		871527E8205E74B8001E6346 /* ChatInputContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputContainerView.swift; sourceTree = "<group>"; };
 		873E134B20405D000011FE76 /* LoginControllers+handlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginControllers+handlers.swift"; sourceTree = "<group>"; };
 		873E134E2041A8AE0011FE76 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		873E13502042EF000011FE76 /* ChatLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 			children = (
 				876E6EC520403CF000FD2D68 /* UserCell.swift */,
 				873E1354204C14320011FE76 /* ChatMessageCell.swift */,
+				871527E8205E74B8001E6346 /* ChatInputContainerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				873E13512042EF000011FE76 /* ChatLogController.swift in Sources */,
+				871527E9205E74B8001E6346 /* ChatInputContainerView.swift in Sources */,
 				873E134C20405D000011FE76 /* LoginControllers+handlers.swift in Sources */,
 				878C15A520402BA200B75A89 /* NewMessageController.swift in Sources */,
 				8781218D203357E800868B51 /* MessagesController.swift in Sources */,
